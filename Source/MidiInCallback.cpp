@@ -21,10 +21,10 @@ MidiInCallback::~MidiInCallback()
 {
 }
 
-void MidiInCallback::handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message)
+void MidiInCallback::handleIncomingMidiMessage(MidiInput* source, const MidiMessage &message)
 {
 }
 
-void MidiInCallback::handlePartialSysexMessage(juce::MidiInput* source, const juce::uint8* messageData, int numBytesSoFar, double timestamp)
+void MidiInCallback::handlePartialSysexMessage(MidiInput* source, const uint8 *messageData, int numBytesSoFar, double timestamp)
 {
 }

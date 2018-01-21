@@ -14,8 +14,10 @@
 #include "juce_audio_basics\midi\juce_MidiMessage.h"
 #include "juce_core/maths/juce_MathsFunctions.h"
 
+using namespace juce;
+
 //==============================================================================
-class MidiInCallback : juce::MidiInputCallback
+class MidiInCallback : virtual MidiInputCallback
 {
 	MidiInCallback();
 	~MidiInCallback();
@@ -23,6 +25,6 @@ class MidiInCallback : juce::MidiInputCallback
 
 	
 public:
-	void handleIncomingMidiMessage(juce::MidiInput* source, const juce::MidiMessage& message);
-	void handlePartialSysexMessage(juce::MidiInput* source, const juce::uint8* messageData, int numBytesSoFar, double timestamp);
+	void handleIncomingMidiMessage(MidiInput *source, const MidiMessage &message);
+	void handlePartialSysexMessage(MidiInput *source, const uint8 *messageData, int numBytesSoFar, double timestamp);
 };

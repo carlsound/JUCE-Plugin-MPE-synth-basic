@@ -3,7 +3,7 @@
 <JUCERPROJECT id="VrIkYH" name="JUCE-Plugin-MPE-synth-basic" displaySplashScreen="1"
               reportAppUsage="1" splashScreenColour="Dark" projectType="audioplug"
               version="1.0.0" bundleIdentifier="net.carlsound.JUCEPluginMPEsynthbasic"
-              includeBinaryInAppConfig="1" cppLanguageStandard="11" companyCopyright=""
+              includeBinaryInAppConfig="1" cppLanguageStandard="11" companyCopyright="carlsound"
               buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginName="JUCE-Plugin-MPE-synth-basic"
               pluginDesc="JUCE-Plugin-MPE-synth-basic" pluginManufacturer="carlsound"
