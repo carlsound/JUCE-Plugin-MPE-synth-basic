@@ -19,10 +19,8 @@
             file="Source/MidiInCallback.cpp"/>
       <FILE id="YJQeSt" name="MidiInCallback.h" compile="0" resource="0"
             file="Source/MidiInCallback.h"/>
-      <FILE id="gkRm08" name="MPEInstrumentListener.cpp" compile="1" resource="0"
-            file="Source/MPEInstrumentListener.cpp"/>
-      <FILE id="y3npSM" name="MPEInstrumentListener.h" compile="0" resource="0"
-            file="Source/MPEInstrumentListener.h"/>
+      <FILE id="iIEj99" name="MPESynth.cpp" compile="1" resource="0" file="Source/MPESynth.cpp"/>
+      <FILE id="R833vZ" name="MPESynth.h" compile="0" resource="0" file="Source/MPESynth.h"/>
       <FILE id="x1GJmm" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="wBBbrh" name="PluginProcessor.h" compile="0" resource="0"
