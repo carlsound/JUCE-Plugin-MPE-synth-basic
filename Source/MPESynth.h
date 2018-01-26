@@ -9,12 +9,13 @@
 */
 
 #pragma once
-#include "juce_audio_basics/buffers/juce_AudioSampleBuffer.h"
-#include "juce_audio_basics/midi/juce_MidiMessage.h"
-#include "juce_audio_basics/mpe/juce_MPENote.h"
-#include "juce_audio_basics/mpe/juce_MPESynthesiser.h"
-#include "juce_audio_basics/mpe/juce_MPEInstrument.h"
-#include "juce_audio_basics/mpe/juce_MPESynthesiserVoice.h"
+#include <JuceHeader.h>
+//#include "juce_audio_basics/buffers/juce_AudioSampleBuffer.h"
+//#include "juce_audio_basics/midi/juce_MidiMessage.h"
+//#include "juce_audio_basics/mpe/juce_MPENote.h"
+//#include "juce_audio_basics/mpe/juce_MPESynthesiser.h"
+//#include "juce_audio_basics/mpe/juce_MPEInstrument.h"
+//#include "juce_audio_basics/mpe/juce_MPESynthesiserVoice.h"
 
 using namespace juce;
 
@@ -23,7 +24,7 @@ class MPESynth : MPESynthesiser
 public:
 	MPESynth();
 	explicit MPESynth(MPEInstrument *instrument);
-	~MPESynth()();
+	~MPESynth();
 
 	//==============================================================================
 

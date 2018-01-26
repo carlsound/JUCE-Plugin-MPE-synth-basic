@@ -21,6 +21,9 @@
             file="Source/MidiInCallback.h"/>
       <FILE id="iIEj99" name="MPESynth.cpp" compile="1" resource="0" file="Source/MPESynth.cpp"/>
       <FILE id="R833vZ" name="MPESynth.h" compile="0" resource="0" file="Source/MPESynth.h"/>
+      <FILE id="PJQKhZ" name="MPESynthVoice.cpp" compile="1" resource="0"
+            file="Source/MPESynthVoice.cpp"/>
+      <FILE id="ZPzmxa" name="MPESynthVoice.h" compile="0" resource="0" file="Source/MPESynthVoice.h"/>
       <FILE id="x1GJmm" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="wBBbrh" name="PluginProcessor.h" compile="0" resource="0"
