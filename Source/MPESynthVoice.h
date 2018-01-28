@@ -10,21 +10,23 @@
 
 #pragma once
 #include <JuceHeader.h>
-
+//
+#include "../3rdPartyLibraryCode/maximilian.h"
+//
 using namespace juce;
-
-class MPESynthVoice : juce::MPESynthesiserVoice
+//
+class MPESynthVoice : public juce::MPESynthesiserVoice
 {
 public:
 	//==============================================================================
 	MPESynthVoice();
-	~MPESynthVoice();
+	~MPESynthVoice() = default;
 
 	//==============================================================================
-	MPENote getCurrentlyPlayingNote() noexcept;
-	bool isCurrentlyPlayingNote(MPENote note) const noexcept;
-	bool isActive() const override;
-	bool isPlayingButReleased() const noexcept;
+	//MPENote getCurrentlyPlayingNote() noexcept;
+	//bool isCurrentlyPlayingNote(MPENote note) const noexcept;
+	//bool isActive() const override;
+	//bool isPlayingButReleased() const noexcept;
 	void noteStarted() override;
 	void noteStopped(bool allowTailOff) override;
 	void notePressureChanged() override;
@@ -35,18 +37,18 @@ public:
 	void renderNextBlock(AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
 	void renderNextBlock(AudioBuffer<double>& outputBuffer, int startSample, int numSamples) override;
 	//==============================================================================
-	void setCurrentSampleRate(double newRate) override;
-	double getSampleRate() const noexcept;
-	bool wasStartedBefore(const MPESynthesiserVoice& other) const noexcept;
+	//void setCurrentSampleRate(double newRate) override;
+	//double getSampleRate() const noexcept;
+	//bool wasStartedBefore(const MPESynthesiserVoice& other) const noexcept;
 
-private:
+//private:
 	//==============================================================================
 
 protected:
 	//==============================================================================
-	void clearCurrentNote() noexcept;
+	//void clearCurrentNote() noexcept;
 
 	//==============================================================================
 	double currentSampleRate;
-	MPENote currentlyPlayingNote;
+	std::shared_ptr<MPENote> currentlyPlayingNote;
 };

@@ -12,15 +12,17 @@
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="JUCEPluginMPEsynthbasicAU"
               pluginRTASCategory="" aaxIdentifier="net.carlsound.JUCEPluginMPEsynthbasic"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.0"
-              companyName="carlsound" companyWebsite="carlsound.net">
+              companyName="carlsound" companyWebsite="carlsound.net" headerPath="./3rdPartyLibraryCode">
   <MAINGROUP id="S3CYkE" name="JUCE-Plugin-MPE-synth-basic">
+    <GROUP id="{96AA776C-DE03-CA4E-0556-373573702015}" name="3rdPartyLibraryCode">
+      <FILE id="wNTFWc" name="maximilian.cpp" compile="1" resource="0" file="3rdPartyLibraryCode/maximilian.cpp"/>
+      <FILE id="iZPs8T" name="maximilian.h" compile="0" resource="0" file="3rdPartyLibraryCode/maximilian.h"/>
+    </GROUP>
     <GROUP id="{2E343CCC-67AD-0FA8-17A4-E75BC6952694}" name="Source">
-      <FILE id="NzoML6" name="MidiInCallback.cpp" compile="1" resource="0"
-            file="Source/MidiInCallback.cpp"/>
-      <FILE id="YJQeSt" name="MidiInCallback.h" compile="0" resource="0"
-            file="Source/MidiInCallback.h"/>
-      <FILE id="iIEj99" name="MPESynth.cpp" compile="1" resource="0" file="Source/MPESynth.cpp"/>
-      <FILE id="R833vZ" name="MPESynth.h" compile="0" resource="0" file="Source/MPESynth.h"/>
+      <FILE id="NzoML6" name="MPESynthEngine.cpp" compile="1" resource="0"
+            file="Source/MPESynthEngine.cpp"/>
+      <FILE id="YJQeSt" name="MPESynthEngine.h" compile="0" resource="0"
+            file="Source/MPESynthEngine.h"/>
       <FILE id="PJQKhZ" name="MPESynthVoice.cpp" compile="1" resource="0"
             file="Source/MPESynthVoice.cpp"/>
       <FILE id="ZPzmxa" name="MPESynthVoice.h" compile="0" resource="0" file="Source/MPESynthVoice.h"/>

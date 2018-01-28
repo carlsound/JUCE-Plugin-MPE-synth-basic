@@ -7,11 +7,11 @@
 
   ==============================================================================
 */
-
+#include <numeric>
+//
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-
-
+//
 //==============================================================================
 JucepluginmpesynthbasicAudioProcessor::JucepluginmpesynthbasicAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -25,11 +25,10 @@ JucepluginmpesynthbasicAudioProcessor::JucepluginmpesynthbasicAudioProcessor()
                        )
 #endif
 {
+	mpeSynthEngine = std::unique_ptr<MPESynthEngine>{ new MPESynthEngine };
 }
 
-JucepluginmpesynthbasicAudioProcessor::~JucepluginmpesynthbasicAudioProcessor()
-{
-}
+//JucepluginmpesynthbasicAudioProcessor::~JucepluginmpesynthbasicAudioProcessor(){}
 
 //==============================================================================
 const String JucepluginmpesynthbasicAudioProcessor::getName() const
@@ -98,6 +97,7 @@ void JucepluginmpesynthbasicAudioProcessor::prepareToPlay (double sampleRate, in
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+	mpeSynthEngine->prepareToPlay(sampleRate, samplesPerBlock);
 }
 
 void JucepluginmpesynthbasicAudioProcessor::releaseResources()
@@ -147,12 +147,17 @@ void JucepluginmpesynthbasicAudioProcessor::processBlock (AudioSampleBuffer& buf
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
+
+	mpeSynthEngine->processBlock(buffer);
+
+	/*
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         float* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
     }
+	*/
 }
 
 //==============================================================================

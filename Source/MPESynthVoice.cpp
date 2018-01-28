@@ -10,25 +10,22 @@
 
 #include "MPESynthVoice.h"
 
-MPENote MPESynthVoice::getCurrentlyPlayingNote() noexcept
+MPESynthVoice::MPESynthVoice()
 {
-	return MPENote();
+	currentSampleRate = 0;
+	currentlyPlayingNote = nullptr;
 }
 
-bool MPESynthVoice::isCurrentlyPlayingNote(MPENote note) const noexcept
-{
-	return false;
-}
+//MPESynthVoice::~MPESynthVoice(){}
 
-bool MPESynthVoice::isActive() const
-{
-	return false;
-}
+//==============================================================================
 
-bool MPESynthVoice::isPlayingButReleased() const noexcept
-{
-	return false;
-}
+//MPENote MPESynthVoice::getCurrentlyPlayingNote() noexcept {return MPENote();}
+//bool MPESynthVoice::isCurrentlyPlayingNote(MPENote note) const noexcept{}
+//bool MPESynthVoice::isActive() const{}
+//bool MPESynthVoice::isPlayingButReleased() const noexcept{}
+
+
 
 void MPESynthVoice::noteStarted()
 {
@@ -54,6 +51,8 @@ void MPESynthVoice::noteKeyStateChanged()
 {
 }
 
+//==============================================================================
+
 void MPESynthVoice::renderNextBlock(AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
 }
@@ -62,20 +61,9 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int start
 {
 }
 
-void MPESynthVoice::setCurrentSampleRate(double newRate)
-{
-}
+//==============================================================================
 
-double MPESynthVoice::getSampleRate() const noexcept
-{
-	return 0.0;
-}
-
-bool MPESynthVoice::wasStartedBefore(const MPESynthesiserVoice & other) const noexcept
-{
-	return false;
-}
-
-void MPESynthVoice::clearCurrentNote() noexcept
-{
-}
+//void MPESynthVoice::setCurrentSampleRate(double newRate){}
+//double MPESynthVoice::getSampleRate() const noexcept { return 0.0; }
+//bool MPESynthVoice::wasStartedBefore(const MPESynthesiserVoice & other) const noexcept { return false; }
+//void MPESynthVoice::clearCurrentNote() noexcept{}
