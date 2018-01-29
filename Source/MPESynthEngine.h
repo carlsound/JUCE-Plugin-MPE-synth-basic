@@ -33,7 +33,7 @@ public:
 
 	//==============================================================================
 	void prepareToPlay(double sampleRate, int samplesPerBlock);
-	void processBlock(AudioSampleBuffer&);
+	void processBlock(AudioSampleBuffer&, int numInputChannels, int numOutputChannels, MidiBuffer& midiMessages);
 
 protected:
 	//==============================================================================

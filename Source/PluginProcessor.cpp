@@ -142,13 +142,15 @@ void JucepluginmpesynthbasicAudioProcessor::processBlock (AudioSampleBuffer& buf
     // This is here to avoid people getting screaming feedback
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
-    for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+    /*
+	for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
+	*/
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
 
-	mpeSynthEngine->processBlock(buffer);
+	mpeSynthEngine->processBlock(buffer, totalNumInputChannels, totalNumOutputChannels, midiMessages);
 
 	/*
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
