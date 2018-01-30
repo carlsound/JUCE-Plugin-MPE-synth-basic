@@ -40,11 +40,14 @@ protected:
 
 private:
 	//==============================================================================
-	std::unique_ptr<MPESynthesiser> mpeSynthesiser;
-	std::shared_ptr<MPESynthVoice*> mpeSynthVoice;
+	std::unique_ptr<MPESynthesiser> mpe_synthesiser_;
+	std::shared_ptr<MPESynthVoice*> mpe_synth_voice_;
 	//
-	std::unique_ptr<MidiMessageCollector> midiMessageCollector;
+	std::unique_ptr<MidiMessageCollector> midi_message_collector_;
 	//
-	const int numVoices = 10;
-	std::vector<int> voicesArray;
+	const int number_of_voices_ = 10;
+	std::vector<int> voices_array_;
+	//
+	double sample_rate_;
+	int samples_per_block_;
 };

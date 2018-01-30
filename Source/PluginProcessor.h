@@ -61,5 +61,5 @@ private:
     //==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JucepluginmpesynthbasicAudioProcessor)
 
-	std::unique_ptr<MPESynthEngine> mpeSynthEngine;
+	std::unique_ptr<MPESynthEngine> mpe_synth_engine_;
 };

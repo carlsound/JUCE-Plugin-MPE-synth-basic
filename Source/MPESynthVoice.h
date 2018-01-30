@@ -49,6 +49,6 @@ protected:
 	//void clearCurrentNote() noexcept;
 
 	//==============================================================================
-	double currentSampleRate;
-	std::shared_ptr<MPENote> currentlyPlayingNote;
+	double sample_rate_;
+	std::shared_ptr<MPENote> currently_playing_note_;
 };

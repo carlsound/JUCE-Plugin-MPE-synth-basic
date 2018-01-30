@@ -25,7 +25,7 @@ JucepluginmpesynthbasicAudioProcessor::JucepluginmpesynthbasicAudioProcessor()
                        )
 #endif
 {
-	mpeSynthEngine = std::unique_ptr<MPESynthEngine>{ new MPESynthEngine };
+	mpe_synth_engine_ = std::unique_ptr<MPESynthEngine>{ new MPESynthEngine };
 }
 
 //JucepluginmpesynthbasicAudioProcessor::~JucepluginmpesynthbasicAudioProcessor(){}
@@ -97,7 +97,7 @@ void JucepluginmpesynthbasicAudioProcessor::prepareToPlay (double sampleRate, in
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-	mpeSynthEngine->prepareToPlay(sampleRate, samplesPerBlock);
+	mpe_synth_engine_->prepareToPlay(sampleRate, samplesPerBlock);
 }
 
 void JucepluginmpesynthbasicAudioProcessor::releaseResources()
@@ -150,7 +150,7 @@ void JucepluginmpesynthbasicAudioProcessor::processBlock (AudioSampleBuffer& buf
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
 
-	mpeSynthEngine->processBlock(buffer, totalNumInputChannels, totalNumOutputChannels, midiMessages);
+	mpe_synth_engine_->processBlock(buffer, totalNumInputChannels, totalNumOutputChannels, midiMessages);
 
 	/*
     for (int channel = 0; channel < totalNumInputChannels; ++channel)

@@ -12,8 +12,8 @@
 
 MPESynthVoice::MPESynthVoice()
 {
-	currentSampleRate = 0;
-	currentlyPlayingNote = nullptr;
+	sample_rate_ = 0;
+	currently_playing_note_ = nullptr;
 }
 
 //MPESynthVoice::~MPESynthVoice(){}
@@ -55,6 +55,19 @@ void MPESynthVoice::noteKeyStateChanged()
 
 void MPESynthVoice::renderNextBlock(AudioBuffer<float>& outputBuffer, int startSample, int numSamples)
 {
+	ScopedNoDenormals noDenormals;
+	const int totalNumChannels = outputBuffer.getNumChannels();
+	//
+	// This is the place where you'd normally do the guts of your plugin's
+	// audio processing...
+	/*
+	for (int channel = 0; channel < totalNumInputChannels; ++channel)
+	{
+	float* channelData = buffer.getWritePointer (channel);
+
+	// ..do something to the data...
+	}
+	*/
 }
 
 void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int startSample, int numSamples)
