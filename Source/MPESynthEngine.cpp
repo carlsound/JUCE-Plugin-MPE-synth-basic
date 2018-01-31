@@ -44,6 +44,7 @@ void MPESynthEngine::handleIncomingMidiMessage(MidiInput* source, const MidiMess
 void MPESynthEngine::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
 	sample_rate_ = sampleRate;
+	mpe_synthesiser_->setCurrentPlaybackSampleRate(sampleRate);
 	samples_per_block_ = samplesPerBlock;
 }
 

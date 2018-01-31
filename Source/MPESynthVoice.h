@@ -51,4 +51,7 @@ protected:
 	//==============================================================================
 	double sample_rate_;
 	std::shared_ptr<MPENote> currently_playing_note_;
+	std::shared_ptr<maxiOsc> oscillator;
+	double frequency_Hz_;
+	double phase;
 };

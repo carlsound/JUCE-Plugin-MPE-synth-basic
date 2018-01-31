@@ -14,6 +14,8 @@ MPESynthVoice::MPESynthVoice()
 {
 	sample_rate_ = 0;
 	currently_playing_note_ = nullptr;
+	oscillator = std::shared_ptr<maxiOsc>{ new maxiOsc };
+	phase = 0.0;
 }
 
 //MPESynthVoice::~MPESynthVoice(){}
@@ -29,10 +31,25 @@ MPESynthVoice::MPESynthVoice()
 
 void MPESynthVoice::noteStarted()
 {
+	*currently_playing_note_ = getCurrentlyPlayingNote();
+	if( currently_playing_note_->isValid()
+		&& 
+		(MPENote::keyDown == currently_playing_note_->keyState
+			||
+			MPENote::keyDownAndSustained == currently_playing_note_->keyState) )
+	{
+		frequency_Hz_ = currently_playing_note_->getFrequencyInHertz(sample_rate_);
+		phase = 0.0;
+	}
 }
 
 void MPESynthVoice::noteStopped(bool allowTailOff)
 {
+	*currently_playing_note_ = getCurrentlyPlayingNote();
+	if(MPENote::off == currently_playing_note_->keyState)
+	{
+		frequency_Hz_ = currently_playing_note_->getFrequencyInHertz(sample_rate_);
+	}
 }
 
 void MPESynthVoice::notePressureChanged()
