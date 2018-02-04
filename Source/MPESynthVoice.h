@@ -57,10 +57,11 @@ protected:
 	double sample_rate_;
 	double sample_amplitude_;
 	int key_state_previous_;
-	//std::shared_ptr<MPENote> currently_playing_note_;
 	std::shared_ptr<maxiOsc> oscillator;
 	std::shared_ptr<maxiSettings> oscillator_settings_;
 	double frequency_Hz_;
 	double phase;
     bool allow_tail_off_;
+	std::vector<float*> channelDataFloat;
+	std::vector<double*> channelDataDouble;
 };

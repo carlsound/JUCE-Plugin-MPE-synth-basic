@@ -24,13 +24,12 @@ MPESynthVoice::MPESynthVoice(int sampleRate)
 void MPESynthVoice::initialize()
 {
     setCurrentSampleRate(44100);
-	//currently_playing_note_ = nullptr;
-	//oscillator = std::shared_ptr<maxiOsc>{ new maxiOsc };
 	oscillator = std::make_shared<maxiOsc>();
-	//oscillator_settings_ = std::shared_ptr<maxiSettings>{ new maxiSettings };
 	oscillator_settings_ = std::make_shared<maxiSettings>();
 	phase = 0.0;
     allow_tail_off_ = true;
+	channelDataFloat.clear();
+	channelDataDouble.clear();
 }
 
 
@@ -50,8 +49,6 @@ void MPESynthVoice::setCurrentSampleRate(int sampleRate)
 //bool MPESynthVoice::isActive() const{}
 //bool MPESynthVoice::isPlayingButReleased() const noexcept{}
 
-
-
 void MPESynthVoice::noteStarted()
 {
 	if( currentlyPlayingNote.isValid()
@@ -68,7 +65,7 @@ void MPESynthVoice::noteStarted()
 void MPESynthVoice::noteStopped(bool allowTailOff)
 {
     allow_tail_off_ = allowTailOff;
-    if(allowTailOff)
+    if(allow_tail_off_)
     {
         
     }
@@ -110,28 +107,23 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<float>& outputBuffer, int startS
 {
 	ScopedNoDenormals noDenormals;
 	const int totalNumChannels = outputBuffer.getNumChannels();
-	//
-	// This is the place where you'd normally do the guts of your plugin's
-	// audio processing...
-	/*
-	for (int channel = 0; channel < totalNumInputChannels; ++channel)
+	for (int channel = 0; channel < totalNumChannels; ++channel)
 	{
-		float* channelData = buffer.getWritePointer (channel);
-
-		// ..do something to the data...
+		channelDataFloat.push_back(outputBuffer.getWritePointer(channel));
 	}
-	*/
+	//
     if(allow_tail_off_)
     {
+		//
         clearCurrentNote();
     }
+	//
 	for (int sample = startSample; sample < (startSample + numSamples); ++sample)
 	{
 		sample_amplitude_ = oscillator->sinewave(frequency_Hz_);
 		for(int channel = 0; channel < totalNumChannels; ++channel)
 		{
-			float* channelData = outputBuffer.getWritePointer(channel);
-			channelData[sample] = static_cast<float>(sample_amplitude_);
+			channelDataFloat[channel][sample] = static_cast<float>(sample_amplitude_);
 		}
 	}
 }
@@ -140,9 +132,14 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int start
 {
 	ScopedNoDenormals noDenormals;
 	const int totalNumChannels = outputBuffer.getNumChannels();
-    //
+	for (int channel = 0; channel < totalNumChannels; ++channel)
+	{
+		channelDataDouble.push_back(outputBuffer.getWritePointer(channel));
+	}
+	//
     if(allow_tail_off_)
     {
+		//
         clearCurrentNote();
     }
     for (int sample = startSample; sample < (startSample + numSamples); ++sample)
@@ -150,8 +147,7 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int start
         sample_amplitude_ = oscillator->sinewave(frequency_Hz_);
         for(int channel = 0; channel < totalNumChannels; ++channel)
         {
-            double* channelData = outputBuffer.getWritePointer(channel);
-            channelData[sample] = sample_amplitude_;
+            channelDataDouble[channel][sample] = sample_amplitude_;
         }
     }
 }

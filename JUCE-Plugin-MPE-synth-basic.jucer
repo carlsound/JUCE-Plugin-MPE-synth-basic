@@ -24,8 +24,6 @@
               file="Source/MPESynthEngine.cpp"/>
         <FILE id="YJQeSt" name="MPESynthEngine.h" compile="0" resource="0"
               file="Source/MPESynthEngine.h"/>
-        <FILE id="noGQCR" name="MPESynth.cpp" compile="1" resource="0" file="Source/MPESynth.cpp"/>
-        <FILE id="BsQ6e4" name="MPESynth.h" compile="0" resource="0" file="Source/MPESynth.h"/>
         <FILE id="PJQKhZ" name="MPESynthVoice.cpp" compile="1" resource="0"
               file="Source/MPESynthVoice.cpp"/>
         <FILE id="ZPzmxa" name="MPESynthVoice.h" compile="0" resource="0" file="Source/MPESynthVoice.h"/>
