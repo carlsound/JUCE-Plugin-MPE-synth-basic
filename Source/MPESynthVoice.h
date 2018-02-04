@@ -20,8 +20,12 @@ class MPESynthVoice : public juce::MPESynthesiserVoice
 public:
 	//==============================================================================
 	MPESynthVoice();
+	MPESynthVoice(int sampleRate);
+	//
 	~MPESynthVoice() = default;
 
+	//==============================================================================
+	void setCurrentSampleRate(int sampleRate);
 	//==============================================================================
 	//MPENote getCurrentlyPlayingNote() noexcept;
 	//bool isCurrentlyPlayingNote(MPENote note) const noexcept;
@@ -47,11 +51,16 @@ public:
 protected:
 	//==============================================================================
 	//void clearCurrentNote() noexcept;
+	void initialize();
 
 	//==============================================================================
 	double sample_rate_;
-	std::shared_ptr<MPENote> currently_playing_note_;
+	double sample_amplitude_;
+	int key_state_previous_;
+	//std::shared_ptr<MPENote> currently_playing_note_;
 	std::shared_ptr<maxiOsc> oscillator;
+	std::shared_ptr<maxiSettings> oscillator_settings_;
 	double frequency_Hz_;
 	double phase;
+    bool allow_tail_off_;
 };

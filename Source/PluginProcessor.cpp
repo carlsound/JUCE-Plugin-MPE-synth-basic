@@ -25,7 +25,8 @@ JucepluginmpesynthbasicAudioProcessor::JucepluginmpesynthbasicAudioProcessor()
                        )
 #endif
 {
-	mpe_synth_engine_ = std::unique_ptr<MPESynthEngine>{ new MPESynthEngine };
+	//mpe_synth_engine_ = std::unique_ptr<MPESynthEngine>{ new MPESynthEngine };
+	mpe_synth_engine_ = std::make_unique<MPESynthEngine>();
 }
 
 //JucepluginmpesynthbasicAudioProcessor::~JucepluginmpesynthbasicAudioProcessor(){}
