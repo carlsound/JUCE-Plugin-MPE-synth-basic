@@ -1,0 +1,41 @@
+PluginEditor
+     is an AudioProcessorEditor
+     
+     has a PluginProcessor
+          is an AudioProcessor
+
+          has a DeviceManager
+               has an AudioDeviceManager
+               has an AudioDeviceIOCallback
+               has a MidiInputCallback
+
+          has an MPESynthEngine
+               implements MidiInputCallback
+
+               has a MidiMessageCollector
+
+               has a MPESynthesiser
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice
+
+                    has a MPESynthVoice
+                         is an MPESynthesiserVoice

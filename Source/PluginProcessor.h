@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 //
+#include "DeviceManager.h"
 #include "MPESynthEngine.h"
 //
 //==============================================================================
@@ -22,7 +23,7 @@ class JucepluginmpesynthbasicAudioProcessor  : public AudioProcessor
 public:
     //==============================================================================
     JucepluginmpesynthbasicAudioProcessor();
-    ~JucepluginmpesynthbasicAudioProcessor() = default;
+    ~JucepluginmpesynthbasicAudioProcessor();
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -61,5 +62,6 @@ private:
     //==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JucepluginmpesynthbasicAudioProcessor)
 
-	std::unique_ptr<MPESynthEngine> mpe_synth_engine_;
+	std::shared_ptr<MPESynthEngine> mpe_synth_engine_;
+	std::shared_ptr<DeviceManager> device_manager_;
 };

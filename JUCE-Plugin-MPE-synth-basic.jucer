@@ -11,7 +11,7 @@
               pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="JUCEPluginMPEsynthbasicAU"
               pluginRTASCategory="" aaxIdentifier="net.carlsound.JUCEPluginMPEsynthbasic"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.0"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.1"
               companyName="carlsound" companyWebsite="carlsound.net" headerPath="./3rdPartyLibraryCode">
   <MAINGROUP id="S3CYkE" name="JUCE-Plugin-MPE-synth-basic">
     <GROUP id="{96AA776C-DE03-CA4E-0556-373573702015}" name="3rdPartyLibraryCode">
@@ -19,22 +19,29 @@
       <FILE id="iZPs8T" name="maximilian.h" compile="0" resource="0" file="3rdPartyLibraryCode/maximilian.h"/>
     </GROUP>
     <GROUP id="{2E343CCC-67AD-0FA8-17A4-E75BC6952694}" name="Source">
-      <GROUP id="{1C39D0C2-B64A-F1E8-40C8-8021A3528803}" name="MPE Synthesiser">
-        <FILE id="NzoML6" name="MPESynthEngine.cpp" compile="1" resource="0"
-              file="Source/MPESynthEngine.cpp"/>
-        <FILE id="YJQeSt" name="MPESynthEngine.h" compile="0" resource="0"
-              file="Source/MPESynthEngine.h"/>
-        <FILE id="PJQKhZ" name="MPESynthVoice.cpp" compile="1" resource="0"
-              file="Source/MPESynthVoice.cpp"/>
-        <FILE id="ZPzmxa" name="MPESynthVoice.h" compile="0" resource="0" file="Source/MPESynthVoice.h"/>
+      <GROUP id="{4234EE08-508C-2805-E9CA-6ECBA4F988D0}" name="Processor">
+        <FILE id="x1GJmm" name="PluginProcessor.cpp" compile="1" resource="0"
+              file="Source/PluginProcessor.cpp"/>
+        <FILE id="wBBbrh" name="PluginProcessor.h" compile="0" resource="0"
+              file="Source/PluginProcessor.h"/>
+        <FILE id="LUvFTi" name="DeviceManager.cpp" compile="1" resource="0"
+              file="Source/DeviceManager.cpp"/>
+        <FILE id="hDRlD9" name="DeviceManager.h" compile="0" resource="0" file="Source/DeviceManager.h"/>
+        <GROUP id="{1C39D0C2-B64A-F1E8-40C8-8021A3528803}" name="MPE Synthesiser">
+          <FILE id="NzoML6" name="MPESynthEngine.cpp" compile="1" resource="0"
+                file="Source/MPESynthEngine.cpp"/>
+          <FILE id="YJQeSt" name="MPESynthEngine.h" compile="0" resource="0"
+                file="Source/MPESynthEngine.h"/>
+          <FILE id="PJQKhZ" name="MPESynthVoice.cpp" compile="1" resource="0"
+                file="Source/MPESynthVoice.cpp"/>
+          <FILE id="ZPzmxa" name="MPESynthVoice.h" compile="0" resource="0" file="Source/MPESynthVoice.h"/>
+        </GROUP>
       </GROUP>
-      <FILE id="x1GJmm" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="wBBbrh" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="LS1Utl" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="egJPF8" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <GROUP id="{129F7FAF-231A-5123-A640-414D1AA8A53A}" name="Editor">
+        <FILE id="LS1Utl" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/PluginEditor.cpp"/>
+        <FILE id="egJPF8" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      </GROUP>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

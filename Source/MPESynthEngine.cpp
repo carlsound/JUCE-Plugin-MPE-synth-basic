@@ -30,7 +30,11 @@ MPESynthEngine::MPESynthEngine()
 	samples_per_block_ = 480;
 }
 
-//MPESynthEngine::~MPESynthEngine(){}
+MPESynthEngine::~MPESynthEngine()
+{
+	mpe_synth_voice_ = nullptr;
+	mpe_synthesiser_ = nullptr;
+}
 
 //==============================================================================
 
@@ -47,6 +51,11 @@ void MPESynthEngine::handleIncomingMidiMessage(MidiInput* source, const MidiMess
 //void MPESynthEngine::handlePartialSysexMessage(MidiInput* source, const uint8 *messageData, int numBytesSoFar, double timestamp){}
 
 //==============================================================================
+
+MidiInputCallback * MPESynthEngine::getMidiInputCallback()
+{
+	return this;
+}
 
 void MPESynthEngine::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
