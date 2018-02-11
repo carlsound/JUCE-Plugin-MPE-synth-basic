@@ -57,11 +57,14 @@ protected:
 	double sample_rate_;
 	double sample_amplitude_;
 	int key_state_previous_;
-	std::shared_ptr<maxiOsc> oscillator;
+	std::shared_ptr<maxiOsc> oscillator_;
 	std::shared_ptr<maxiSettings> oscillator_settings_;
 	double frequency_Hz_;
 	double phase;
     bool allow_tail_off_;
-	std::vector<float*> channelDataFloat;
-	std::vector<double*> channelDataDouble;
+	std::shared_ptr<AudioBuffer<float>> audio_buffer_float_;
+	std::shared_ptr<AudioBuffer<double>> audio_buffer_double_;
+	std::vector<float*> channel_data_float_;
+	std::vector<double*> channel_data_double_;
+	int start_sample_;
 };

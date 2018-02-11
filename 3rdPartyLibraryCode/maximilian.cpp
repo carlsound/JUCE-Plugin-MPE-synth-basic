@@ -203,7 +203,7 @@ void setup();//use this to do any initialisation if you want.
 void play(double *channels);//run dac! 
 
 maxiOsc::maxiOsc(){
-    //When you create an oscillator, the constructor sets the phase of the oscillator to 0.
+    //When you create an oscillator_, the constructor sets the phase of the oscillator_ to 0.
 	phase = 0.0;
 }
 
@@ -216,13 +216,13 @@ double maxiOsc::noise() {
 }
 
 void maxiOsc::phaseReset(double phaseIn) {
-    //This allows you to set the phase of the oscillator to anything you like.
+    //This allows you to set the phase of the oscillator_ to anything you like.
 	phase=phaseIn;
 	
 }
 
 double maxiOsc::sinewave(double frequency) {
-    //This is a sinewave oscillator
+    //This is a sinewave oscillator_
 	output=sin (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));
@@ -231,7 +231,7 @@ double maxiOsc::sinewave(double frequency) {
 }
 
 double maxiOsc::sinebuf4(double frequency) {
-    //This is a sinewave oscillator that uses 4 point interpolation on a 514 point buffer
+    //This is a sinewave oscillator_ that uses 4 point interpolation on a 514 point buffer
 	double remainder;
 	double a,b,c,d,a1,a2,a3;
 	phase += 512./(maxiSettings::sampleRate/(frequency));
@@ -259,8 +259,8 @@ double maxiOsc::sinebuf4(double frequency) {
 	return(output);
 }
 
-double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscillator in Hz / cps etc.
-    //This is a sinewave oscillator that uses linear interpolation on a 514 point buffer
+double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscillator_ in Hz / cps etc.
+    //This is a sinewave oscillator_ that uses linear interpolation on a 514 point buffer
 	double remainder;
  	phase += 512./(maxiSettings::sampleRate/(frequency*chandiv));
 	if ( phase >= 511 ) phase -=512;
@@ -270,7 +270,7 @@ double maxiOsc::sinebuf(double frequency) { //specify the frequency of the oscil
 }
 
 double maxiOsc::coswave(double frequency) {
-    //This is a cosine oscillator
+    //This is a cosine oscillator_
 	output=cos (phase*(TWOPI));
 	if ( phase >= 1.0 ) phase -= 1.0;
 	phase += (1./(maxiSettings::sampleRate/(frequency)));

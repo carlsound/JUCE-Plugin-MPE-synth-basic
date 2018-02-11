@@ -21,13 +21,15 @@ MPESynthEngine::MPESynthEngine()
     mpe_synthesiser_->enableLegacyMode(24);
 	mpe_synthesiser_->setVoiceStealingEnabled(false);
 	//
-    for(int qty_of_voices_ = 0; qty_of_voices_ < number_of_voices_; ++qty_of_voices_)
-    {
-        mpe_synthesiser_->addVoice(new MPESynthVoice);
-    }
-	//
 	sample_rate_ = 44100;
 	samples_per_block_ = 480;
+	//
+	mpe_synthesiser_->setCurrentPlaybackSampleRate(sample_rate_);
+	//
+	for (int qty_of_voices_ = 0; qty_of_voices_ < number_of_voices_; ++qty_of_voices_)
+	{
+		mpe_synthesiser_->addVoice(new MPESynthVoice);
+	}
 }
 
 MPESynthEngine::~MPESynthEngine()
@@ -42,10 +44,7 @@ void MPESynthEngine::handleIncomingMidiMessage(MidiInput* source, const MidiMess
 {
     midi_message_collector_.addMessageToQueue(message);
 	//
-	if(DEBUG)
-	{
-		std::cout << message.getDescription();
-	}
+	std::cout << message.getDescription();
 }
 
 //void MPESynthEngine::handlePartialSysexMessage(MidiInput* source, const uint8 *messageData, int numBytesSoFar, double timestamp){}
