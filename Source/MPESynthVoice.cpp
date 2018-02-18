@@ -16,23 +16,32 @@ MPESynthVoice::MPESynthVoice()
 	initialize();
 }
 
+/*
 MPESynthVoice::MPESynthVoice(int sampleRate)
 {
 	initialize();
 	setCurrentSampleRate(sampleRate);
 }
+*/
+
+MPESynthVoice::MPESynthVoice(int voiceNumber)
+{
+	initialize();
+	voice_number_ = voiceNumber;
+}
 
 void MPESynthVoice::initialize()
 {
     setCurrentSampleRate(44100);
-	oscillator_ = std::make_shared<maxiOsc>();
-	oscillator_settings_ = std::make_shared<maxiSettings>();
+	oscillator_ = std::make_unique<maxiOsc>();
+	oscillator_settings_ = std::make_unique<maxiSettings>();
 	phase = 0.0;
     allow_tail_off_ = false;
 	channel_data_float_.clear();
 	channel_data_double_.clear();
 	audio_buffer_float_ = std::make_shared<AudioBuffer<float>>();
 	audio_buffer_double_ = std::make_shared<AudioBuffer<double>>();
+	voice_number_ = 0;
 }
 
 
@@ -54,6 +63,8 @@ void MPESynthVoice::setCurrentSampleRate(int sampleRate)
 
 void MPESynthVoice::noteStarted()
 {
+	ConsoleOutput::consoleOutput(std::string("noteStarted voice #") + std::to_string(voice_number_));
+	//
 	if( currentlyPlayingNote.isValid()
 		&& 
 		(MPENote::keyDown == currentlyPlayingNote.keyState
@@ -67,6 +78,8 @@ void MPESynthVoice::noteStarted()
 
 void MPESynthVoice::noteStopped(bool allowTailOff)
 {
+	ConsoleOutput::consoleOutput(std::string("noteStopped voice #") + std::to_string(voice_number_));
+	//
     allow_tail_off_ = allowTailOff;
     if(allow_tail_off_)
     {
@@ -119,7 +132,9 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<float>& outputBuffer, int startS
 	start_sample_ = startSample;
 	channel_data_float_ = std::vector<float*>(totalNumChannels);
 	//
-	std::cout << "\n" << "start sample = " << startSample;
+	//std::cout << "\n" << "start sample = " << startSample;
+	//
+	//ConsoleOutput::consoleOutput(std::string("voice #") + std::to_string(voice_number_));
 	//
 	for (int channel = 0; channel < totalNumChannels; ++channel)
 	
@@ -140,7 +155,7 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<float>& outputBuffer, int startS
 		sample_amplitude_ = oscillator_->sinewave(frequency_Hz_);
 		for(int channel = 0; channel < totalNumChannels; ++channel)
 		{
-			channel_data_float_[channel][sample] = static_cast<float>(sample_amplitude_);
+			channel_data_float_[channel][sample] += static_cast<float>(sample_amplitude_);
 		}
 	}
 }
@@ -152,6 +167,9 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int start
 	*audio_buffer_double_ = outputBuffer;
 	start_sample_ = startSample;
 	channel_data_double_ = std::vector<double*>(totalNumChannels);
+	//
+	//ConsoleOutput::consoleOutput(std::string("renderNextBlock voice #") + std::to_string(voice_number_));
+	//
 	for (int channel = 0; channel < totalNumChannels; ++channel)
 	{
 		channel_data_double_[channel] = outputBuffer.getWritePointer(channel);
@@ -169,7 +187,7 @@ void MPESynthVoice::renderNextBlock(AudioBuffer<double>& outputBuffer, int start
 		sample_amplitude_ = oscillator_->sinewave(frequency_Hz_);
 		for (int channel = 0; channel < totalNumChannels; ++channel)
 		{
-			channel_data_double_[channel][sample] = sample_amplitude_;
+			channel_data_double_[channel][sample] += sample_amplitude_;
 		}
 	}
 }

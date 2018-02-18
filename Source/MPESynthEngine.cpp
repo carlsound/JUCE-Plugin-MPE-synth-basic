@@ -16,26 +16,26 @@
 
 MPESynthEngine::MPESynthEngine()
 {
-	mpe_synthesiser_ = std::make_shared<MPESynthesiser>();
+	//mpe_synthesiser_ = std::make_shared<MPESynthesiser>();
 	//
-    mpe_synthesiser_->enableLegacyMode(24);
-	mpe_synthesiser_->setVoiceStealingEnabled(false);
+    mpe_synthesiser_.enableLegacyMode(24);
+	mpe_synthesiser_.setVoiceStealingEnabled(true);
 	//
 	sample_rate_ = 44100;
 	samples_per_block_ = 480;
 	//
-	mpe_synthesiser_->setCurrentPlaybackSampleRate(sample_rate_);
+	mpe_synthesiser_.setCurrentPlaybackSampleRate(sample_rate_);
 	//
 	for (int qty_of_voices_ = 0; qty_of_voices_ < number_of_voices_; ++qty_of_voices_)
 	{
-		mpe_synthesiser_->addVoice(new MPESynthVoice);
+		mpe_synthesiser_.addVoice(new MPESynthVoice(qty_of_voices_+1));
 	}
 }
 
 MPESynthEngine::~MPESynthEngine()
 {
-	mpe_synth_voice_ = nullptr;
-	mpe_synthesiser_ = nullptr;
+	//mpe_synth_voice_ = nullptr;
+	//mpe_synthesiser_ = nullptr;
 }
 
 //==============================================================================
@@ -45,6 +45,7 @@ void MPESynthEngine::handleIncomingMidiMessage(MidiInput* source, const MidiMess
     midi_message_collector_.addMessageToQueue(message);
 	//
 	//
+	/*
 	if (SystemStats::getOperatingSystemType() && SystemStats::OperatingSystemType::MacOSX)
 	{
 		std::cout << message.getDescription();
@@ -54,6 +55,12 @@ void MPESynthEngine::handleIncomingMidiMessage(MidiInput* source, const MidiMess
 		OutputDebugStringA(message.getDescription().toStdString().c_str());
 		OutputDebugStringA("\n");
 	}
+	*/
+	//ConsoleOutput *co = new ConsoleOutput();
+	//*co << message.getDescription();
+	//co->consoleOutput(message.getDescription());
+	//
+	//ConsoleOutput::consoleOutput(message.getDescription());
 }
 
 //void MPESynthEngine::handlePartialSysexMessage(MidiInput* source, const uint8 *messageData, int numBytesSoFar, double timestamp){}
@@ -71,13 +78,15 @@ void MPESynthEngine::prepareToPlay(double sampleRate, int samplesPerBlock)
 	samples_per_block_ = samplesPerBlock;
 	//
     midi_message_collector_.reset(sample_rate_);
-	mpe_synthesiser_->setCurrentPlaybackSampleRate(sample_rate_);
+	mpe_synthesiser_.setCurrentPlaybackSampleRate(sample_rate_);
 }
 
-void MPESynthEngine::processBlock(AudioSampleBuffer& buffer, int numInputChannels, int numOutputChannels, MidiBuffer& midiMessages)
+//void MPESynthEngine::processBlock(AudioSampleBuffer& buffer, int numInputChannels, int numOutputChannels, MidiBuffer& midiMessages)
+void MPESynthEngine::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     midi_message_collector_.removeNextBlockOfMessages(midiMessages, samples_per_block_);
 	//
+	/*
 	int num_events_ = midiMessages.getNumEvents();
 	MidiMessage message;
 	MidiBuffer::Iterator mbi(midiMessages);
@@ -85,9 +94,11 @@ void MPESynthEngine::processBlock(AudioSampleBuffer& buffer, int numInputChannel
 	{
 		if (mbi.getNextEvent(message, event))
 		{
-			std::cout << message.getDescription();
+			//std::cout << message.getDescription();
+			//ConsoleOutput::consoleOutput(message.getDescription());
 		}
 	}
+	*/
 	//
-	mpe_synthesiser_->renderNextBlock(buffer, midiMessages, 0, samples_per_block_);
+	mpe_synthesiser_.renderNextBlock(buffer, midiMessages, 0, samples_per_block_);
 }

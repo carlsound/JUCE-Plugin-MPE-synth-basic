@@ -13,6 +13,9 @@
 //
 #include "../3rdPartyLibraryCode/maximilian.h"
 //
+#include "ConsoleOutput.h"
+#include <string>
+//
 using namespace juce;
 //
 class MPESynthVoice : public juce::MPESynthesiserVoice
@@ -20,7 +23,8 @@ class MPESynthVoice : public juce::MPESynthesiserVoice
 public:
 	//==============================================================================
 	MPESynthVoice();
-	MPESynthVoice(int sampleRate);
+	//MPESynthVoice(int sampleRate);
+	MPESynthVoice(int voiceNumber);
 	//
 	~MPESynthVoice() = default;
 
@@ -57,8 +61,8 @@ protected:
 	double sample_rate_;
 	double sample_amplitude_;
 	int key_state_previous_;
-	std::shared_ptr<maxiOsc> oscillator_;
-	std::shared_ptr<maxiSettings> oscillator_settings_;
+	std::unique_ptr<maxiOsc> oscillator_;
+	std::unique_ptr<maxiSettings> oscillator_settings_;
 	double frequency_Hz_;
 	double phase;
     bool allow_tail_off_;
@@ -67,4 +71,5 @@ protected:
 	std::vector<float*> channel_data_float_;
 	std::vector<double*> channel_data_double_;
 	int start_sample_;
+	int voice_number_;
 };

@@ -14,6 +14,11 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.2.1"
               companyName="carlsound" companyWebsite="carlsound.net" headerPath="./3rdPartyLibraryCode">
   <MAINGROUP id="S3CYkE" name="JUCE-Plugin-MPE-synth-basic">
+    <GROUP id="{43760DE2-4B1D-A8FA-058A-EDD5F2B4E532}" name="Debugging">
+      <FILE id="RjNsMZ" name="ConsoleOutput.cpp" compile="1" resource="0"
+            file="Source/ConsoleOutput.cpp"/>
+      <FILE id="cY97Jf" name="ConsoleOutput.h" compile="0" resource="0" file="Source/ConsoleOutput.h"/>
+    </GROUP>
     <GROUP id="{96AA776C-DE03-CA4E-0556-373573702015}" name="3rdPartyLibraryCode">
       <FILE id="wNTFWc" name="maximilian.cpp" compile="1" resource="0" file="3rdPartyLibraryCode/maximilian.cpp"/>
       <FILE id="iZPs8T" name="maximilian.h" compile="0" resource="0" file="3rdPartyLibraryCode/maximilian.h"/>

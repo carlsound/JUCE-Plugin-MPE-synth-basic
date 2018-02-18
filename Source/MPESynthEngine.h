@@ -10,6 +10,7 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "ConsoleOutput.h"
 //#include "juce_audio_devices/midi_io/juce_MidiInput.h"
 //#include "juce_audio_devices/midi_io/juce_MidiMessageCollector.h"
 //#include "juce_audio_basics\midi\juce_MidiMessage.h"
@@ -37,15 +38,17 @@ public:
 
 	//==============================================================================
 	void prepareToPlay(double sampleRate, int samplesPerBlock);
-	void processBlock(AudioSampleBuffer&, int numInputChannels, int numOutputChannels, MidiBuffer& midiMessages);
+	//void processBlock(AudioSampleBuffer&, int numInputChannels, int numOutputChannels, MidiBuffer& midiMessages);
+	void processBlock(AudioSampleBuffer&, MidiBuffer& midiMessages);
 
 protected:
 	//==============================================================================
 
 private:
 	//==============================================================================
-	std::shared_ptr<MPESynthesiser> mpe_synthesiser_;
-	std::shared_ptr<MPESynthVoice*> mpe_synth_voice_;
+	//std::shared_ptr<MPESynthesiser> mpe_synthesiser_;
+	MPESynthesiser mpe_synthesiser_;
+	//std::shared_ptr<MPESynthVoice*> mpe_synth_voice_;
 	//
     MidiMessageCollector midi_message_collector_;
 	//

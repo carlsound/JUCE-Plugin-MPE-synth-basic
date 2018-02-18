@@ -140,8 +140,8 @@ bool JucepluginmpesynthbasicAudioProcessor::isBusesLayoutSupported (const BusesL
 void JucepluginmpesynthbasicAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
     ScopedNoDenormals noDenormals;
-    const int totalNumInputChannels  = getTotalNumInputChannels();
-    const int totalNumOutputChannels = getTotalNumOutputChannels();
+    //const int totalNumInputChannels  = getTotalNumInputChannels();
+    //const int totalNumOutputChannels = getTotalNumOutputChannels();
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -153,11 +153,13 @@ void JucepluginmpesynthbasicAudioProcessor::processBlock (AudioSampleBuffer& buf
 	for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 	*/
+	buffer.clear();
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
 
-	mpe_synth_engine_->processBlock(buffer, totalNumInputChannels, totalNumOutputChannels, midiMessages);
+	//mpe_synth_engine_->processBlock(buffer, totalNumInputChannels, totalNumOutputChannels, midiMessages);
+	mpe_synth_engine_->processBlock(buffer, midiMessages);
 
 	/*
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
